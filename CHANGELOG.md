@@ -1017,10 +1017,6 @@ This release contains internal technical improvements only. No changes to functi
 
 ### [1.87.7](https://github.com/taiga-family/ci/compare/v1.87.6...v1.87.7) (2024-09-30)
 
-### 🐞 Bug Fixes
-
-- drop tbank [(5613fee)](https://github.com/taiga-family/ci/commit/5613feec698e5bf66d657e2ed71e86a1903655e3)
-
 ### [1.87.6](https://github.com/taiga-family/ci/compare/v1.87.5...v1.87.6) (2024-09-29)
 
 ### [1.87.5](https://github.com/taiga-family/ci/compare/v1.87.4...v1.87.5) (2024-09-27)
