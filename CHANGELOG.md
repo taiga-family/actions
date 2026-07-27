@@ -1,3 +1,7 @@
+## [2.8.0](https://github.com/taiga-family/actions/compare/v2.7.0...v2.8.0) (2026-07-22)
+
+This release contains internal technical improvements only. No changes to functionality, UI, or APIs.
+
 ## [2.7.0](https://github.com/taiga-family/actions/compare/v2.6.0...v2.7.0) (2026-07-16)
 
 This release contains internal technical improvements only. No changes to functionality, UI, or APIs.
