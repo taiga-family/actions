@@ -1,3 +1,11 @@
+## [2.11.0](https://github.com/taiga-family/actions/compare/v2.10.0...v2.11.0) (2026-08-12)
+
+### 🐞 Bug Fixes
+
+- replace legacy actions by modern alternatives inside `release-it` action
+  ([#744](https://github.com/taiga-family/actions/pull/744))
+  [(9a85d71)](https://github.com/taiga-family/actions/commit/9a85d71fa5f56e55340ad3f0deece50de12c68f1)
+
 ## [2.10.0](https://github.com/taiga-family/actions/compare/v2.9.0...v2.10.0) (2026-08-08)
 
 This release contains internal technical improvements only. No changes to functionality, UI, or APIs.
