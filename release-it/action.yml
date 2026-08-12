@@ -34,12 +34,12 @@ runs:
         persist-credentials: false
         fetch-tags: true
         fetch-depth: 0
-    - uses: taiga-family/ci/actions/setup/variables@b50b17b39428cf197348948aa945d564aa2bdf17 # main
-    - uses: taiga-family/ci/actions/setup/node@b50b17b39428cf197348948aa945d564aa2bdf17 # main
-    - uses: taiga-family/ci/actions/setup/config/git@b50b17b39428cf197348948aa945d564aa2bdf17 # main
+    - uses: taiga-family/actions/setup-variables@main # main
+    - uses: taiga-family/actions/setup-node@main # main
+    - uses: taiga-family/actions/setup-git@main # main
       with:
         token: ${{ inputs.githubToken }}
-    - uses: taiga-family/ci/actions/setup/config/npm@b50b17b39428cf197348948aa945d564aa2bdf17 # main
+    - uses: taiga-family/actions/setup-npm@main # main
       if: ${{ inputs.npmToken }}
       with:
         token: ${{ inputs.npmToken }}
