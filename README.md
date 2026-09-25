@@ -267,13 +267,13 @@ Sends a release announcement to a Telegram chat.
 
 Sends a release announcement to a Mattermost/webhook channel.
 
-| Input      | Description                                   | Default         |
-| ---------- | --------------------------------------------- | --------------- |
-| `url`      | Webhook URL                                   | (required)      |
-| `version`  | Release version                               | (required)      |
-| `username` | Display name                                  | `Taiga release` |
-| `channel`  | Channel                                       | (required)      |
-| `ca-cert`  | PEM CA certificate to trust (e.g. corporate)  | `''`            |
+| Input      | Description                                  | Default         |
+| ---------- | -------------------------------------------- | --------------- |
+| `url`      | Webhook URL                                  | (required)      |
+| `version`  | Release version                              | (required)      |
+| `username` | Display name                                 | `Taiga release` |
+| `channel`  | Channel                                      | (required)      |
+| `ca-cert`  | PEM CA certificate to trust (e.g. corporate) | `''`            |
 
 ```yml
 - uses: taiga-family/actions/messenger-mattermost-announce@main
