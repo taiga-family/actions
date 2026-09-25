@@ -15,14 +15,27 @@ inputs:
   channel:
     description: Channel
     required: true
+  ca-cert:
+    description: PEM-encoded CA certificate (or chain) to trust for the webhook host
+    required: false
+    default: ''
 
 runs:
   using: composite
   steps:
     - name: Announce
       shell: bash
+      env:
+        CA_CERT: ${{ inputs.ca-cert }}
       run: |
-        curl --http1.1 -X POST \
+        CURL_TLS_ARGS=()
+        if [ -n "$CA_CERT" ]; then
+          CA_FILE="$RUNNER_TEMP/mattermost-ca.pem"
+          printf '%s\n' "$CA_CERT" > "$CA_FILE"
+          CURL_TLS_ARGS=(--cacert "$CA_FILE")
+        fi
+
+        curl --http1.1 -X POST "${CURL_TLS_ARGS[@]}" \
              -H "Content-Type: application/json" \
              -d "{\"text\": \"New version [${{ inputs.version }}](https://github.com/${{ github.repository }}/releases/tag/${{ inputs.version }}) released :tada:\", \"username\": \"${{ inputs.username }}\"}" \
              ${{ inputs.url }}
