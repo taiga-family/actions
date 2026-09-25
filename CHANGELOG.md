@@ -1,3 +1,10 @@
+## [2.18.0](https://github.com/taiga-family/actions/compare/v2.17.0...v2.18.0) (2026-09-25)
+
+### 🚀 Features
+
+- add `ca-cert` input for custom CA ([#752](https://github.com/taiga-family/actions/pull/752))
+  [(e234395)](https://github.com/taiga-family/actions/commit/e23439533f3caf249ab61290feb82ed55c175c65)
+
 ## [2.17.0](https://github.com/taiga-family/actions/compare/v2.16.0...v2.17.0) (2026-09-14)
 
 This release contains internal technical improvements only. No changes to functionality, UI, or APIs.
