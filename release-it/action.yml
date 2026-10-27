@@ -9,8 +9,12 @@ inputs:
     description: GitHub token
     required: true
   npmToken:
-    description: NPM token
+    description: NPM token (deprecated, prefer npmTrustedPublishing)
     required: false
+  npmTrustedPublishing:
+    description: 'Publish via npm trusted publishing (OIDC), requires `permissions: id-token: write`'
+    required: false
+    default: 'false'
   mode:
     description: Increment mode
     required: false
@@ -40,7 +44,7 @@ runs:
       with:
         token: ${{ inputs.githubToken }}
     - uses: taiga-family/actions/setup-npm@main # main
-      if: ${{ inputs.npmToken }}
+      if: ${{ inputs.npmToken || inputs.npmTrustedPublishing == 'true' }}
       with:
         token: ${{ inputs.npmToken }}
 
