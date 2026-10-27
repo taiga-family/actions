@@ -338,13 +338,14 @@ Reads `name` and `version` from a `package.json` file.
 
 Runs `release-it` to create a new version. Detects conventional commits and bumps version accordingly.
 
-| Input         | Description                                                       | Default     |
-| ------------- | ----------------------------------------------------------------- | ----------- |
-| `ref`         | GitHub ref                                                        | current ref |
-| `githubToken` | GitHub token                                                      | (required)  |
-| `npmToken`    | NPM token                                                         |             |
-| `mode`        | Increment mode (`patch`, `minor`, `major`, `alpha`, `prerelease`) |             |
-| `flags`       | Custom release-it flags                                           | `''`        |
+| Input                  | Description                                                                            | Default     |
+| ---------------------- | -------------------------------------------------------------------------------------- | ----------- |
+| `ref`                  | GitHub ref                                                                             | current ref |
+| `githubToken`          | GitHub token                                                                           | (required)  |
+| `npmToken`             | NPM token (deprecated, prefer `npmTrustedPublishing`)                                  |             |
+| `npmTrustedPublishing` | Publish via [npm trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC) | `'false'`   |
+| `mode`                 | Increment mode (`patch`, `minor`, `major`, `alpha`, `prerelease`)                      |             |
+| `flags`                | Custom release-it flags                                                                | `''`        |
 
 | Output     | Description                     |
 | ---------- | ------------------------------- |
@@ -355,6 +356,22 @@ Runs `release-it` to create a new version. Detects conventional commits and bump
   with:
     githubToken: ${{ secrets.GITHUB_TOKEN }}
     mode: minor
+```
+
+With npm trusted publishing (the job needs `id-token: write` permission):
+
+```yml
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: taiga-family/actions/release-it@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          npmTrustedPublishing: true
 ```
 
 ## Security codeql
@@ -437,16 +454,33 @@ Sets up Node.js with cached `node_modules` and Nx cache. Optionally runs `npm au
 
 ## Setup npm
 
-Configures npm registry token and validates it.
+Configures npm authentication. With `token` it sets the registry token and validates it. Without `token` it prepares
+[npm trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC): checks that the job has `id-token: write`
+permission and upgrades npm to `>=11.5.1` if needed.
 
-| Input   | Description | Default    |
-| ------- | ----------- | ---------- |
-| `token` | NPM token   | (required) |
+| Input   | Description                                    | Default |
+| ------- | ---------------------------------------------- | ------- |
+| `token` | NPM token (omit to use npm trusted publishing) | `''`    |
 
 ```yml
 - uses: taiga-family/actions/setup-npm@main
   with:
     token: ${{ secrets.NPM_TOKEN }}
+```
+
+With npm trusted publishing:
+
+```yml
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: taiga-family/actions/setup-node@main
+      - uses: taiga-family/actions/setup-npm@main
+      - run: npm publish
 ```
 
 ## Setup playwright
