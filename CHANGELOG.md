@@ -1,3 +1,11 @@
+## [2.24.0](https://github.com/taiga-family/actions/compare/v2.23.0...v2.24.0) (2026-10-27)
+
+### 🚀 Features
+
+- support npm trusted publishing in `setup-npm` and `release-it`
+  ([#758](https://github.com/taiga-family/actions/pull/758))
+  [(6b14122)](https://github.com/taiga-family/actions/commit/6b14122bb46924974dbba97866f06b1a3d5e02f1)
+
 ## [2.23.0](https://github.com/taiga-family/actions/compare/v2.22.0...v2.23.0) (2026-10-21)
 
 This release contains internal technical improvements only. No changes to functionality, UI, or APIs.
